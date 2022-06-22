@@ -44,7 +44,7 @@ def game():
         if bgx <= -640:
             bgx = 0
 
-        screen.blit(player, (50, player_y))
+        p_rect = screen.blit(player, (50, player_y))
         if player_y < 325:
             player_y += gravity
 
@@ -55,11 +55,14 @@ def game():
                  jumpcount = 0
                  jump=0
 
-        screen.blit(crate, (crate_x,360))
+        c_rect = screen.blit(crate, (crate_x,360))
         crate_x -= crate_speed
         if crate_x < -50:
             crate_x = random.randint(700, 800)
             crate_speed = random.randint(2, 5)
+
+        if p_rect.colliderect(c_rect):
+            return
 
         pygame.display.update()
         for event in pygame.event.get():
