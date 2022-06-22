@@ -22,6 +22,10 @@ def game():
     image = pygame.image.load('assets/level1.png')
     image = pygame.transform.scale(image, (640,480))
     bgx = 0
+
+
+    player = pygame.image.load('assets/boy.png')
+    player = pygame.transform.rotozoom(player, 0, 0.2)
     while True:
         screen.blit(image, (bgx-640, 0))
         screen.blit(image, (bgx, 0))
@@ -31,6 +35,7 @@ def game():
         if bgx <= -640:
             bgx = 0
 
+        screen.blit(player, (50, 325))
 
         pygame.display.update()
         for event in pygame.event.get():
