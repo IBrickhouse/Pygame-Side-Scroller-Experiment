@@ -21,8 +21,17 @@ def menu():
 def game():
     image = pygame.image.load('assets/level1.png')
     image = pygame.transform.scale(image, (640,480))
+    bgx = 0
     while True:
-        screen.blit(image, (0,0))
+        screen.blit(image, (bgx-640, 0))
+        screen.blit(image, (bgx, 0))
+        screen.blit(image, (bgx+640, 0))
+
+        bgx = bgx - 1
+        if bgx <= -640:
+            bgx = 0
+
+
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
