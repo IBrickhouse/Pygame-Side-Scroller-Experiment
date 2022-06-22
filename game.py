@@ -1,4 +1,6 @@
 import pygame
+import random
+
 screen = pygame.display.set_mode((640,480))
 
 pygame.display.set_caption("Side Scroller")
@@ -28,6 +30,11 @@ def game():
     gravity = 1
     jumpcount = 0
     jump= 0 
+
+    crate = pygame.image.load('assets/crate.png')
+    crate = pygame.transform.rotozoom(crate, 0, 0.8)
+    crate_x = 700
+    crate_speed = 2
     while True:
         screen.blit(image, (bgx-640, 0))
         screen.blit(image, (bgx, 0))
@@ -47,6 +54,12 @@ def game():
             if jumpcount > 40:
                  jumpcount = 0
                  jump=0
+
+        screen.blit(crate, (crate_x,360))
+        crate_x -= crate_speed
+        if crate_x < -50:
+            crate_x = random.randint(700, 800)
+            crate_speed = random.randint(2, 5)
 
         pygame.display.update()
         for event in pygame.event.get():
